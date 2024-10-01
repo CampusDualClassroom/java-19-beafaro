@@ -1,5 +1,8 @@
 package com.campusdual.classroom;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Exercise19 {
 
     private static String getTridimensionalString(int[][][] intArrayTri, int[][] flatMatrix) {
@@ -40,32 +43,91 @@ public class Exercise19 {
     //TODO
     public static int[][] flatTridimensionalArray(int[][][] intArrayTri) {
 
+        int rows = intArrayTri[0].length;
+        int columns = intArrayTri[0][0].length;
+        int[][] flatArray = new int[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                for (int k = 0; k < intArrayTri[i][j].length; k++) {
+                    flatArray[j][k] += intArrayTri[i][j][k];
+                }
+            }
+        }
+
+        return flatArray;
     }
 
 
     // TODO
     public static String getBidimensionalString(int[][] intArrayBi) {
+        StringBuilder builder = new StringBuilder();
 
+        for (int i = 0; i < intArrayBi.length; i++) {
+            builder.append(stringFlatMatrixRow(intArrayBi, i));
+
+            if (i < intArrayBi.length - 1) {
+                builder.append("\n");
+            }
+            //            sb.delete(sb.length() - 1, sb.length());
+        }
+        return builder.toString();
     }
 
     // TODO
     public static String getUnidimensionalString(int[] uniArray) {
+        StringBuilder builder = new StringBuilder();
 
+        for (int i = 0; i < uniArray.length; i++) {
+            builder.append(uniArray[i]);
+
+            if (i < uniArray.length - 1) {
+                builder.append(" ");
+            }
+        }
+
+        return builder.toString();
     }
 
     // TODO
     public static int[] createAndPopulateUnidimensionalArray(int columns) {
+        int[] arrayUni = new int[columns];
 
+        for (int i = 0; i < columns; i++) {
+            arrayUni[i] = (i + 1);
+        }
+
+        return arrayUni;
     }
 
     // TODO
     public static int[][] createAndPopulateBidimensionalArray(int rows, int columns) {
+        int[][] arrayBi = new int[rows][columns];
+        int valor = 1;
 
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                arrayBi[i][j] = valor++;
+            }
+        }
+
+        return arrayBi;
     }
 
     // TODO
     public static int[][][] createAndPopulateTridimensionalArray(int depth, int rows, int columns) {
+        int[][][] arrayTri = new int[depth][rows][columns];
+        int valor = 1;
 
+        for (int i = 0; i < depth; i++) {
+            for (int j = 0; j < rows; j++) {
+                for (int k = 0; k < columns; k++) {
+                    arrayTri[i][j][k] = valor++;
+                }
+            }
+        }
+
+        return arrayTri;
     }
 
     public static void main(String[] args) {
